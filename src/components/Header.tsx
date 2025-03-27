@@ -1,127 +1,107 @@
 
 import { useState, useEffect } from 'react';
-import { cn } from '@/lib/utils';
 import { useScrollPosition } from '@/utils/animations';
+import { cn } from '@/lib/utils';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 
 const Header = () => {
-  const scrollPosition = useScrollPosition();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
-  const isScrolled = scrollPosition > 10;
-  
-  const navItems = [
-    { name: "Introduction", href: "#introduction" },
-    { name: "Core Technologies", href: "#core-technologies" },
-    { name: "Frameworks", href: "#frameworks" },
-    { name: "Applications", href: "#use-cases" },
-    { name: "Future", href: "#future" },
+  const scrollY = useScrollPosition();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  const navLinks = [
+    { name: 'Home', href: '/' },
+    { name: 'Introduction', href: '/introduction' },
+    { name: 'Core Technologies', href: '/core-technologies' },
+    { name: 'Frameworks', href: '/frameworks' },
+    { name: 'Use Cases', href: '/use-cases' },
+    { name: 'Future', href: '/future' },
+    { name: 'Case Studies', href: '/case-studies' },
   ];
 
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isMenuOpen]);
-
-  const handleNavClick = (href: string) => {
-    setIsMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      const yOffset = -100; // Adjust based on header height
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
+  const isActive = (path: string) => {
+    if (path === '/' && location.pathname === '/') return true;
+    if (path !== '/' && location.pathname.startsWith(path)) return true;
+    return false;
   };
 
   return (
-    <header 
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 py-4 px-6 md:px-12 transition-all duration-300",
-        isScrolled ? "bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-sm" : "bg-transparent"
-      )}
-    >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <a href="#" className="text-xl font-display font-medium flex items-center gap-2">
-          <span className="text-primary">AI</span>
-          <span className="hidden sm:inline">Agents</span>
-        </a>
-        
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick(item.href);
-              }}
-              className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-            >
-              {item.name}
-            </a>
-          ))}
-        </nav>
-        
-        {/* Mobile Menu Button */}
-        <button 
-          className="md:hidden flex flex-col space-y-1.5 z-50"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span 
-            className={cn(
-              "w-6 h-0.5 bg-foreground transition-all", 
-              isMenuOpen && "translate-y-2 rotate-45"
-            )} 
-          />
-          <span 
-            className={cn(
-              "w-6 h-0.5 bg-foreground transition-all", 
-              isMenuOpen && "opacity-0"
-            )} 
-          />
-          <span 
-            className={cn(
-              "w-6 h-0.5 bg-foreground transition-all", 
-              isMenuOpen && "-translate-y-2 -rotate-45"
-            )} 
-          />
-        </button>
-        
-        {/* Mobile Menu */}
-        <div 
-          className={cn(
-            "fixed inset-0 bg-background flex flex-col justify-center items-center transition-opacity duration-300 md:hidden",
-            isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-          )}
-        >
-          <nav className="flex flex-col space-y-8 text-center">
-            {navItems.map((item, i) => (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item.href);
-                }}
+    <header className={cn(
+      "fixed top-0 inset-x-0 z-50 transition-all duration-300 border-b",
+      scrollY > 10 ? "bg-background/80 backdrop-blur-md border-primary/20" : "bg-transparent border-transparent"
+    )}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-2">
+            <span className="text-lg font-mono uppercase tracking-wider text-primary cyberpunk-glow">
+              <span className="text-foreground">&lt;</span>
+              AI Agents
+              <span className="text-foreground">/&gt;</span>
+            </span>
+          </Link>
+          
+          {/* Desktop navigation */}
+          <nav className="hidden md:flex space-x-6">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.href}
                 className={cn(
-                  "text-xl font-medium text-foreground/80 hover:text-primary transition-all",
-                  isMenuOpen && "animate-fade-in-up",
-                  // Staggered animation
-                  isMenuOpen && `[animation-delay:${200 + i * 50}ms]`
+                  "font-mono text-sm uppercase tracking-wider transition-colors relative group",
+                  isActive(link.href) 
+                    ? "text-primary cyberpunk-glow" 
+                    : "text-foreground/70 hover:text-foreground"
                 )}
               >
-                {item.name}
-              </a>
+                {link.name}
+                <span className={cn(
+                  "absolute -bottom-1 left-0 w-full h-px bg-primary transform origin-left transition-transform duration-300",
+                  isActive(link.href) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                )}></span>
+              </Link>
             ))}
           </nav>
+          
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden flex items-center text-foreground"
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+      </div>
+      
+      {/* Mobile menu */}
+      <div
+        className={cn(
+          "md:hidden absolute top-16 left-0 right-0 bg-muted/95 backdrop-blur-lg border-b border-primary/20 transition-all duration-300 overflow-hidden",
+          mobileMenuOpen ? "max-h-[500px] border-opacity-100" : "max-h-0 border-opacity-0"
+        )}
+      >
+        <div className="container mx-auto px-4 py-4 space-y-2">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              to={link.href}
+              className={cn(
+                "block py-2 px-3 font-mono text-sm uppercase tracking-wider transition-colors",
+                isActive(link.href) 
+                  ? "text-primary bg-muted/50 cyberpunk-glow" 
+                  : "text-foreground/70 hover:bg-muted/30 hover:text-foreground"
+              )}
+            >
+              {isActive(link.href) && <span className="mr-1 text-secondary">&gt;</span>}
+              {link.name}
+            </Link>
+          ))}
         </div>
       </div>
     </header>
