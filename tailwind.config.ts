@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +19,25 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: [
+					'-apple-system', 'BlinkMacSystemFont', 'San Francisco', 'Helvetica Neue', 
+					'Helvetica', 'Ubuntu', 'Roboto', 'Noto', 'Segoe UI', 'Arial', 'sans-serif'
+				],
+				display: [
+					'SF Pro Display', '-apple-system', 'BlinkMacSystemFont', 'San Francisco', 
+					'Helvetica Neue', 'Helvetica', 'sans-serif'
+				],
+				mono: [
+					'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', 'Droid Sans Mono', 
+					'Source Code Pro', 'monospace'
+				],
+			},
+			fontSize: {
+				'hero': 'clamp(2.5rem, 8vw, 4.5rem)',
+				'display': 'clamp(1.8rem, 5vw, 3rem)',
+				'title': 'clamp(1.5rem, 4vw, 2rem)',
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -70,25 +90,42 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				'fade-in': {
+					from: { opacity: '0' },
+					to: { opacity: '1' }
+				},
+				'fade-in-up': {
+					from: { opacity: '0', transform: 'translateY(20px)' },
+					to: { opacity: '1', transform: 'translateY(0)' }
+				},
+				'fade-in-down': {
+					from: { opacity: '0', transform: 'translateY(-20px)' },
+					to: { opacity: '1', transform: 'translateY(0)' }
+				},
+				'reveal-text': {
+					from: { transform: 'scaleX(0)' },
+					to: { transform: 'scaleX(1)' }
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.6s ease-out',
+				'fade-in-up': 'fade-in-up 0.8s ease-out',
+				'fade-in-down': 'fade-in-down 0.8s ease-out',
+				'reveal-text': 'reveal-text 0.8s cubic-bezier(0.77, 0, 0.175, 1)',
+				'float': 'float 5s ease-in-out infinite'
 			}
 		}
 	},
