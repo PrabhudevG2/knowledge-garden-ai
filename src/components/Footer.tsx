@@ -1,6 +1,7 @@
 
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
+import { ExternalLink, ArrowRight, BookOpen, FileText } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -37,33 +38,55 @@ const Footer = () => {
               <li>
                 <Link 
                   to="/introduction" 
-                  className="text-foreground/70 hover:text-primary transition-colors"
+                  className="text-foreground/70 hover:text-primary transition-colors flex items-center gap-2"
                 >
+                  <ArrowRight size={14} className="text-primary" />
                   Introduction
                 </Link>
               </li>
               <li>
                 <Link 
                   to="/core-technologies" 
-                  className="text-foreground/70 hover:text-primary transition-colors"
+                  className="text-foreground/70 hover:text-primary transition-colors flex items-center gap-2"
                 >
+                  <ArrowRight size={14} className="text-primary" />
                   Core Technologies
                 </Link>
               </li>
               <li>
                 <Link 
                   to="/frameworks" 
-                  className="text-foreground/70 hover:text-primary transition-colors"
+                  className="text-foreground/70 hover:text-primary transition-colors flex items-center gap-2"
                 >
+                  <ArrowRight size={14} className="text-primary" />
                   Frameworks
                 </Link>
               </li>
               <li>
                 <Link 
                   to="/use-cases" 
-                  className="text-foreground/70 hover:text-primary transition-colors"
+                  className="text-foreground/70 hover:text-primary transition-colors flex items-center gap-2"
                 >
+                  <ArrowRight size={14} className="text-primary" />
                   Applications
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/future" 
+                  className="text-foreground/70 hover:text-primary transition-colors flex items-center gap-2"
+                >
+                  <ArrowRight size={14} className="text-primary" />
+                  Future
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/case-studies" 
+                  className="text-foreground/70 hover:text-primary transition-colors flex items-center gap-2"
+                >
+                  <ArrowRight size={14} className="text-primary" />
+                  Case Studies
                 </Link>
               </li>
             </ul>
@@ -78,8 +101,9 @@ const Footer = () => {
                   href="https://arxiv.org/abs/2312.11805" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-foreground/70 hover:text-primary transition-colors"
+                  className="text-foreground/70 hover:text-primary transition-colors flex items-center gap-2"
                 >
+                  <ExternalLink size={14} className="text-primary" />
                   Agent Research
                 </a>
               </li>
@@ -88,8 +112,9 @@ const Footer = () => {
                   href="https://github.com/topics/ai-agents" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-foreground/70 hover:text-primary transition-colors"
+                  className="text-foreground/70 hover:text-primary transition-colors flex items-center gap-2"
                 >
+                  <ExternalLink size={14} className="text-primary" />
                   GitHub Projects
                 </a>
               </li>
@@ -98,9 +123,32 @@ const Footer = () => {
                   href="https://python.langchain.com/docs/use_cases/autonomous_agents/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-foreground/70 hover:text-primary transition-colors"
+                  className="text-foreground/70 hover:text-primary transition-colors flex items-center gap-2"
                 >
+                  <ExternalLink size={14} className="text-primary" />
                   LangChain Agents
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="https://docs.anthropic.com/claude/docs/claude-3-opus" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-foreground/70 hover:text-primary transition-colors flex items-center gap-2"
+                >
+                  <ExternalLink size={14} className="text-primary" />
+                  Claude Documentation
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="https://platform.openai.com/docs/assistants/overview" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-foreground/70 hover:text-primary transition-colors flex items-center gap-2"
+                >
+                  <ExternalLink size={14} className="text-primary" />
+                  OpenAI Assistants API
                 </a>
               </li>
             </ul>
