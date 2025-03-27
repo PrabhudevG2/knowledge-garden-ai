@@ -1,18 +1,28 @@
 
 import { cn } from '@/lib/utils';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="py-16 bg-gray-50 dark:bg-gray-950 border-t border-gray-100 dark:border-gray-800">
+    <footer className="py-16 bg-background border-t border-primary/20 relative overflow-hidden">
+      {/* Cyberpunk grid overlay */}
+      <div className="absolute inset-0 pointer-events-none z-[-5] opacity-10"
+           style={{
+             backgroundImage: `linear-gradient(to right, rgba(0, 255, 255, 0.1) 1px, transparent 1px), 
+                             linear-gradient(to bottom, rgba(0, 255, 255, 0.1) 1px, transparent 1px)`,
+             backgroundSize: '40px 40px'
+           }} />
+      <div className="absolute -bottom-40 -right-40 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -z-10" />
+      
       <div className="container px-4 sm:px-6 mx-auto max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Branding and Description */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-xl font-display font-medium">
-                <span className="text-primary">AI</span> Agents
+              <span className="text-xl font-mono uppercase tracking-wider">
+                <span className="text-primary">&lt;AI</span> Agents<span className="text-primary">/&gt;</span>
               </span>
             </div>
             <p className="text-foreground/70 max-w-md">
@@ -22,74 +32,46 @@ const Footer = () => {
           
           {/* Quick Links */}
           <div>
-            <h3 className="font-medium text-lg mb-4">Sections</h3>
+            <h3 className="font-mono uppercase text-lg mb-4 text-primary">Sections</h3>
             <ul className="space-y-3">
               <li>
-                <a 
-                  href="#introduction" 
+                <Link 
+                  to="/introduction" 
                   className="text-foreground/70 hover:text-primary transition-colors"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.querySelector('#introduction')?.scrollIntoView({ 
-                      behavior: 'smooth',
-                      block: 'start'
-                    });
-                  }}
                 >
                   Introduction
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#core-technologies" 
+                <Link 
+                  to="/core-technologies" 
                   className="text-foreground/70 hover:text-primary transition-colors"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.querySelector('#core-technologies')?.scrollIntoView({ 
-                      behavior: 'smooth',
-                      block: 'start'
-                    });
-                  }}
                 >
                   Core Technologies
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#frameworks" 
+                <Link 
+                  to="/frameworks" 
                   className="text-foreground/70 hover:text-primary transition-colors"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.querySelector('#frameworks')?.scrollIntoView({ 
-                      behavior: 'smooth',
-                      block: 'start'
-                    });
-                  }}
                 >
                   Frameworks
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#use-cases" 
+                <Link 
+                  to="/use-cases" 
                   className="text-foreground/70 hover:text-primary transition-colors"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.querySelector('#use-cases')?.scrollIntoView({ 
-                      behavior: 'smooth',
-                      block: 'start'
-                    });
-                  }}
                 >
                   Applications
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
           
           {/* Resources */}
           <div>
-            <h3 className="font-medium text-lg mb-4">Resources</h3>
+            <h3 className="font-mono uppercase text-lg mb-4 text-primary">Resources</h3>
             <ul className="space-y-3">
               <li>
                 <a 
@@ -125,10 +107,13 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="mt-16 pt-6 border-t border-gray-200 dark:border-gray-800 text-center">
+        <div className="mt-16 pt-6 border-t border-primary/20 text-center">
           <p className="text-foreground/60 text-sm">
-            © {currentYear} AI Agents Guide. Created for educational purposes.
+            © {currentYear} <span className="text-primary">AI</span> Agents Guide. Created for educational purposes.
           </p>
+          <div className="text-foreground/40 text-xs mt-2 font-mono">
+            <span className="animate-pulse">█</span> AUTONOMOUS • INTELLIGENT • ADAPTIVE <span className="animate-pulse">█</span>
+          </div>
         </div>
       </div>
     </footer>
