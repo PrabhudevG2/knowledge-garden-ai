@@ -1,11 +1,10 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { sections } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { useInView } from '@/utils/animations';
-import { Briefcase, Code, Users, Flask } from 'lucide-react';
+import { Briefcase, Code, Users, Beaker } from 'lucide-react';
 
 const UseCasesPage = () => {
   const section = sections[3]; // Use Cases section
@@ -20,7 +19,7 @@ const UseCasesPage = () => {
     };
   }, []);
 
-  const icons = [Briefcase, Code, Users, Flask];
+  const icons = [Briefcase, Code, Users, Beaker];
 
   return (
     <div className="min-h-screen relative">
