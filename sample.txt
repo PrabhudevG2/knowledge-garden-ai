@@ -1,0 +1,50 @@
+{
+  "delayTime": 13408,
+  "executionTime": 1832143,
+  "id": "52ad61e9-fa2d-41bc-b3c9-a30133f5c98e-e1",
+  "output": {
+    "final_timestamp_utc": "2025-04-02T17:33:32.089341Z",
+    "job_id": "52ad61e9-fa2d-41bc-b3c9-a30133f5c98e-e1",
+    "metrics": {
+      "annotated_video_mb": 2155.2,
+      "avg_batch_inference_time_seconds": 1.114,
+      "coco_annotations_count": 517924,
+      "device_used": "cuda",
+      "frames_read_from_source": 90731,
+      "model_used": "yolo11x.pt",
+      "overall_inference_fps": 179.4,
+      "processing_phase_time_seconds": 1115.14,
+      "source_fps": 25,
+      "source_height": 432,
+      "source_total_frames": 90731,
+      "source_width": 768,
+      "total_frames_processed_inference": 90731,
+      "total_inference_time_seconds": 505.745,
+      "total_job_time_seconds": 1830.51,
+      "upload_phase_time_seconds": 473.45,
+      "yolo_detections_count": 517924
+    },
+    "output_urls": {
+      "annotated_video_url": "https://loop2devbsac.blob.core.windows.net/loop2devcontainer/Autolabelling_Output/video-obeject-detection-1%20hour%20video_labelled.mp4",
+      "coco_json_url": "https://loop2devbsac.blob.core.windows.net/loop2devcontainer/Autolabelling_Output/video-obeject-detection-1%20hour%20video_coco.json",
+      "yolo_txt_url": "https://loop2devbsac.blob.core.windows.net/loop2devcontainer/Autolabelling_Output/video-obeject-detection-1%20hour%20video_yolo.txt"
+    },
+    "processing_parameters": {
+      "batch_size_used": 200,
+      "confidence_threshold_used": 0.5,
+      "output_format_requested": "all"
+    },
+    "source_details": {
+      "blob_path": "Autolabelling_Input/video-obeject-detection-1 hour video.mp4",
+      "container": "loop2devcontainer"
+    },
+    "status": "success",
+    "target_details": {
+      "blob_folder": "Autolabelling_Output",
+      "container": "loop2devcontainer"
+    },
+    "upload_status_summary": "completed"
+  },
+  "status": "COMPLETED",
+  "workerId": "i7jnhzv7h1d4n1"
+}

@@ -136,17 +136,23 @@ const ContentSection = ({ data, index, isAlternate = false }: ContentSectionProp
             {data.items && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
                 {data.items.map((item, i) => (
-                  <div 
+                  <Link
+                    to={`/${data.id}/${item.slug}`}
                     key={i}
                     className={cn(
-                      "glass-card p-6 rounded-md cyberpunk-border transition-all duration-300 hover:shadow-lg transform transition-all duration-700",
+                      "glass-card p-6 rounded-md cyberpunk-border transition-all duration-300 hover:shadow-lg transform transition-all duration-700 group",
                       isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                     )}
                     style={{ transitionDelay: getAnimationDelay(i + data.content.length + 4) }}
                   >
-                    <h3 className="text-lg font-mono uppercase mb-2 text-primary">{item.title}</h3>
-                    <p className="text-foreground/70 text-sm">{item.description}</p>
-                  </div>
+                    <div className="flex flex-col h-full">
+                      <h3 className="text-lg font-mono uppercase mb-2 text-primary">{item.title}</h3>
+                      <p className="text-foreground/70 text-sm mb-4 flex-grow">{item.description}</p>
+                      <div className="text-xs font-mono text-primary/80 group-hover:text-primary transition-colors">
+                        Read more →
+                      </div>
+                    </div>
+                  </Link>
                 ))}
               </div>
             )}

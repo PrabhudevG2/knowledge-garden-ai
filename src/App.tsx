@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +11,7 @@ import UseCases from "./pages/UseCases";
 import Future from "./pages/Future";
 import CaseStudies from "./pages/CaseStudies";
 import NotFound from "./pages/NotFound";
+import DetailPage from "./pages/DetailPage"; // Import the new DetailPage component
 
 const queryClient = new QueryClient();
 
@@ -30,6 +30,7 @@ const App = () => (
           <Route path="/future" element={<Future />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/:sectionId/:itemSlug" element={<DetailPage />} /> {/* Add the dynamic route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

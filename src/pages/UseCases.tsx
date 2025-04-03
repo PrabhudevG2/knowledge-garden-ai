@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Import Link
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { sections } from '@/lib/data';
@@ -68,15 +69,21 @@ const UseCasesPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               {section.items?.map((item, i) => {
                 const Icon = icons[i % icons.length];
+                // Ensure item.slug exists before creating the link
+                if (!item.slug) return null;
+                const linkTo = `/${section.id}/${item.slug}`;
+
                 return (
-                  <div 
+                  <Link
                     key={i}
+                    to={linkTo}
                     className={cn(
-                      "glass-card p-6 rounded-md cyberpunk-border transform transition-all duration-700",
+                      "block glass-card p-6 rounded-md cyberpunk-border transform transition-all duration-700 hover:scale-105 hover:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background", // Added block, hover, focus styles
                       isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                     )}
                     style={{ transitionDelay: `${i * 0.15 + 0.5}s` }}
                   >
+                    {/* Content remains the same, just wrapped by Link */}
                     <div className="flex items-center mb-4">
                       <div className="p-2 bg-muted rounded-md mr-4">
                         <Icon className="w-6 h-6 text-primary" />
@@ -84,7 +91,7 @@ const UseCasesPage = () => {
                       <h3 className="text-xl font-mono uppercase text-primary">{item.title}</h3>
                     </div>
                     <p className="text-foreground/80">{item.description}</p>
-                  </div>
+                  </Link>
                 );
               })}
             </div>

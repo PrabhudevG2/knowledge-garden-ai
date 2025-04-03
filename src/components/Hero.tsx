@@ -35,14 +35,27 @@ const Hero = () => {
             </span>
           </div>
           
-          {/* Main title with cyberpunk styling */}
-          <h1 
-            className="text-hero font-mono uppercase tracking-tight mb-4 leading-[1.1] text-balance animate-fade-in-up cyberpunk-glow"
-            style={{ animationDelay: '200ms' }}
-          >
-            <span className="text-primary block">&lt;{heroContent.title}&gt;</span>
-            <span className="block">{heroContent.subtitle}</span>
-          </h1>
+          {/* Main title with image and cyberpunk styling */}
+          <div className="flex flex-col md:flex-row items-center gap-8 mb-4">
+            <div className="flex-1">
+              <h1
+                className="text-hero font-mono uppercase tracking-tight leading-[1.1] text-balance animate-fade-in-up cyberpunk-glow"
+                style={{ animationDelay: '200ms' }}
+              >
+                <span className="text-primary block">&lt;{heroContent.title}&gt;</span>
+                <span className="block">{heroContent.subtitle}</span>
+              </h1>
+            </div>
+            {/* Further adjusted image container styling */}
+            <div className="w-full md:w-2/5 lg:w-1/3 animate-fade-in-up flex items-center justify-center mt-4 md:mt-0" style={{ animationDelay: '300ms' }}>
+              <img
+                src="/placeholder.svg"
+                alt="AI Agent visualization"
+                // Force specific height and width, ensure object-contain works
+                className="w-full h-64 md:h-80 object-contain cyberpunk-border p-2 bg-muted/10 shadow-[0_0_20px_rgba(0,255,255,0.15)]"
+              />
+            </div>
+          </div>
           
           {/* Description */}
           <p 
